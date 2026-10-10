@@ -1,0 +1,1 @@
+A command-line movie ticket booking and management system built with Python and MongoDB
