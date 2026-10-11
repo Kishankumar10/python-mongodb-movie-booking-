@@ -17,3 +17,7 @@ class MovieManager:
 
     def get_movie_by_name(self, movie_name):
         return self.movies_collection.find_one({"movie_name": movie_name})
+
+    def delete_movie(self, movie_id):
+        result = self.movies_collection.delete_one({"movie_id": movie_id})
+        return result.deleted_count > 0
