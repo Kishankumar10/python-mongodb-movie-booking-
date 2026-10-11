@@ -1,3 +1,5 @@
+from pymongo import ReturnDocument
+
 class MovieManager:
     def __init__(self, movies_collection):
         self.movies_collection = movies_collection
@@ -21,3 +23,11 @@ class MovieManager:
     def delete_movie(self, movie_id):
         result = self.movies_collection.delete_one({"movie_id": movie_id})
         return result.deleted_count > 0
+
+    def update_movie_field(self, movie_id, field, value):
+        result = self.movies_collection.find_one_and_update(
+            {"movie_id": movie_id}, 
+            {"$set": {field: value}},
+            return_document=ReturnDocument.AFTER
+            )
+        return result
