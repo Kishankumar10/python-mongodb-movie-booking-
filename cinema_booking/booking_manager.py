@@ -7,3 +7,10 @@ class BookingManager:
 
     def add_booking(self, booking_data):
         self.bookings_collection.insert_one(booking_data)
+
+    def get_all_bookings(self):
+        cursor = self.bookings_collection.find()
+        return cursor
+
+    def get_booking_by_id(self, booking_id):
+        return self.bookings_collection.find_one({"booking_id": booking_id})
