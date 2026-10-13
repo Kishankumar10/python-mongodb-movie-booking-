@@ -1,4 +1,4 @@
-# Helper functions
+from datetime import datetime
 
 def get_input(prompt):
     while True:
@@ -29,3 +29,22 @@ def get_positive_float(prompt):
             return value
         except ValueError:
             print("❌ Invalid input, Enter a valid number\n")
+
+def get_date(prompt):
+    while True:
+        try: 
+            value = datetime.strptime(get_input(prompt), "%d/%m/%Y")
+            return value
+        except ValueError:
+            print("❌ The format is Invalid, Try again\n")
+
+def get_confirmation(prompt):
+    while True:
+        value = get_input(prompt).lower()
+
+        if value == "y":
+            return True
+        elif value == "n":
+            return False
+
+        print("❌ Please enter y or n.")
